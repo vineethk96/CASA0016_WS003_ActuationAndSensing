@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 
-#define TRIG_PIN 2
+#define TRIG_PIN 1
 #define ECHO_PIN 3
 #define PIN 6
 #define NUMPIXELS 8
@@ -89,12 +89,12 @@ void loop() {
       Serial.println("cm");
 
       // map a distance in cm within 60cm to 8 LEDs
-      if(distance > 60){
-        set_LED(7, 0); // turn off all lights
+      if(distance > 30){
+        //set_LED(7, 0); // turn off all lights
       }
       else{
-        int ledNum = map(round(distance), 0, 60, 0, 7);
-        set_LED(ledNum, 255); // show white light
+        int ledNum = map(round(distance), 0, 30, 0, 7);
+        //set_LED(ledNum, 150); // show white light
       }
       
       currState = _RESET;

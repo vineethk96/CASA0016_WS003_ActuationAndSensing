@@ -8,21 +8,20 @@ void setup() {
   pinMode(LED, OUTPUT);
   pinMode(PIR, INPUT);
 
-  // one min delay time
-  delay(60000);
-  Serial.println("1 min init done.");
+  digitalWrite(LED, LOW);
+
+  delay(15000); // Let Sensor Warm Up
+  Serial.println("rdy");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
   if(digitalRead(PIR) == HIGH){
+    Serial.println("Motion detected");
     digitalWrite(LED, HIGH);
   }
   else{
     digitalWrite(LED, LOW);
   }
-
-  delay(60000);
-  Serial.println("Ready...");
 }

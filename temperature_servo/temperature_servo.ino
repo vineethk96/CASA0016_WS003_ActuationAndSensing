@@ -9,10 +9,14 @@
 
 #include <Servo.h>
 
+#define tempPin A0
+#define servoPin 10
+
 Servo myservo;  // create servo object to control a servo
 
 void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(servoPin);  // attaches the servo on pin 9 to the servo object
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -26,16 +30,20 @@ void loop() {
   // Convert Kelvin to Celcius
   float tempCelsius = tempKelvin - 273;
 
+  Serial.println(tempCelsius);
+
   // Map Celcius to an angle
   int angle = map(round(tempCelsius), 0, 100, 0, 180);
 
   for (int pos = 0; pos <= angle; pos++) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    //Serial.println(pos);
     delay(15);                       // waits 15ms for the servo to reach the position
   }
   for (int pos = angle; pos >= 0; pos--) { // goes from 180 degrees to 0 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    //Serial.println(pos);
     delay(15);                       // waits 15ms for the servo to reach the position
   }
 }
